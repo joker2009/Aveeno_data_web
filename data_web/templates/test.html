@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% block header %}
+  <h2>欢迎使用数据后台</h2>
+{% endblock header %}
+  <div align=center>
+        <a href="/">返回首页</a>
+        总记录数: {{ count }}
+        总页数: {{ num_pages }}
+        当前页: {{ current_page }}
+        {% if has_previous %}
+            <a href="/test/?page=0">首页</a>
+            <a href="/test/?page={{ previous_page_number }}">上一页</a>
+            {% else %}
+                首页 上一页
+        {% endif %}
+        {% if has_next %}
+            <a href="/test/?page={{ next_page_number }}">下一页</a>
+            <a href="/test/?page={{ last_page }}">尾页</a>
+            {% else %}
+                下一页 尾页
+        {% endif %}
+  <div>
+        <p><a href="/output">导出数据</a></p>
+
+    </div>
+
+  </div>
+    <form method="get"  action="/search/">
+  {% csrf_token %}
+  <input type="search" name="barcode" placeholder="搜索条码" >
+        <input type="search" name="sku_name" placeholder="搜索产品名称" >
+        <input type="search" name="wcc_id" placeholder="搜索二维码" >
+        <input type="search" name="packagecode" placeholder="搜索箱码" >
+        <input type="search" name="createtime" placeholder="搜索创建时间" >
+  <button type="submit">搜索</button>
+</form>
+<table align="center"  border="1" cellpadding="0" cellspacing="0">
+  <tr><th>barcode</th><th>sku_name</th><th>wcc_id</th><th>packagecode</th><th>createtime</th></tr>
+{% for res in results %}
+<tr onmouseover="this.style.backgroundColor='#c4e4ff'"
+    onmouseout="this.style.backgroundColor=''"
+    onclick="checkedRow(${indexNo.index})">
+    <td>{{ res.barcode  }}</td>
+    <td>{{ res.sku_name  }}</td>
+    <td>{{ res.wcc_id  }}</td>
+    <td>{{ res.packagecode  }}</td>
+    <td>{{ res.createtime|date:"Y-m-d H:i:s"}}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock content %}

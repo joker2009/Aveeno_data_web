@@ -1,0 +1,56 @@
+采用Django 后台搭建一个网站，网站功能为 登录 修改密码 查询数据库数据
+预想三个接口：登录 查询数据 分页 导出 修改密码
+所有接口采用JSON格式对接前端
+
+超级用户：jiang
+jiang-012
+
+
+用户market2
+joker-012
+安装mysql client
+先配置 URL 再配置VIEWS 最后写TEMPLATES
+现在考虑前后端分离 所以数据全部走接口
+
+难点在于 多表联查
+导出接口
+
+1、数据展示--
+2、数据搜索--
+多条件搜索--
+搜索条件导出--
+3、数据导出--
+2、用户登录--
+
+4、查询数据--
+
+5、显示无权限的界面
+
+6、多表联查的数据展示问题
+inner
+表头
+short_url(wcc_short_url)
+code(wcc_secretcode_barcode)
+barcode(wcc_secretcode_barcode)
+commodity_name(wcc_aveeno_commodity)
+箱码(JSON)
+经销商ID(JSON)
+经销商信息(JSON)
+操作员(JSON)--
+CreateTime(wcc_secretcode_barcode)
+UpdateTime(wcc_secretcode_barcode)
+scan_num(wcc_scan_time_statistic)
+
+
+变量定义好
+数据库定义好：
+default 用户数据库
+data_source 数据源 用于取数据
+
+
+
+本次的核心功能是在搜索 ，所以搜索功能需要一开始就要做好，否则后面的功能基本就要重做！！
+看函数的用法
+
+当你软件遇到解决不了的问题的时候，那就休息一下，过一会再想想没准就解决了
+

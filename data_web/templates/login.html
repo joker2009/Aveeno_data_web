@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+{% block header %}
+  <h2>欢迎使用数据后台</h2>
+{% endblock header %}
+
+
+    {% if form.error %}
+        <p>Your username and password didn't match.Please try again.</p>
+    {% endif %}
+    <form method="post" action="{% url 'data_web:login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+      <button name="submit">log in</button>
+
+      <input type="hidden" name="next" value="{% url 'data_web:index' %}" />
+  </form>
+{% endblock content %}
