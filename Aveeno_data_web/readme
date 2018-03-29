@@ -44,6 +44,7 @@ scan_num(wcc_scan_time_statistic)
 
 变量定义好
 数据库定义好：
+双数据库：
 default 用户数据库
 data_source 数据源 用于取数据
 
@@ -53,4 +54,10 @@ data_source 数据源 用于取数据
 看函数的用法
 
 当你软件遇到解决不了的问题的时候，那就休息一下，过一会再想想没准就解决了
+
+可以考虑多表连接的时候采用数据库的VIEW方式做
+
+采用多数据库连用的时候，需要现在setting里面设置，多数据库连接方式，并建立对应映射(MAPPING)，
+编写数据库路由.py（database_router.py),
+最后再models里设置 class mete类中设置 app_label = 对应的APP名称
 

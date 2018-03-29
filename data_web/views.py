@@ -9,7 +9,8 @@ import xlwt
 from django.shortcuts import render_to_response, render, HttpResponse
 from io import StringIO, BytesIO
 
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, authenticate
+from django import forms
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -18,6 +19,7 @@ from data_web.models import AveenoDataException
 
 # from django.contrib.auth import login, logout, authenticate
 from django.db.models import Q
+
 
 def index(request):
     return render(request, 'index.html')
@@ -79,6 +81,22 @@ def test(request):
                                             'next_page_number': next_page_number,
                                             'has_previous': has_previous,
                                             'has_next': has_next})
+
+
+def register(request):
+    """修改密码"""
+
+
+class ChangeForm(forms.Form):
+    username = forms.CharField(label='用户名')
+    old_password = forms.CharField(label='原密码', widget=forms.PasswordInput())
+    new_password = forms.CharField(label='新密码', widget=forms.PasswordInput())
+
+def change_pass(request):
+    if request.method == 'POST':
+        uf = ChangeForm(request.POST)
+        if uf.is_valid():
+            username
 
 
 def logout_view(request):

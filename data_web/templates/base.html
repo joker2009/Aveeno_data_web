@@ -4,9 +4,9 @@
     <a href="/test/?page=0">数据报表</a> -
     {% if user.is_authenticated %}
         hello, {{ user.username }}.
-        <a href="{% url 'data_web:logout' %}">注销 </a>
+        <a href="{% url 'users:logout' %}">注销 </a>
     {% else %}
-      <a href="{% url 'data_web:login' %}">登录 </a>
+      <a href="{% url 'users:login' %}">登录 </a>
     {% endif %}
 </p>
 

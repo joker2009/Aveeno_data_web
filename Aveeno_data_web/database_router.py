@@ -8,8 +8,8 @@ DATABASE_MAPPING = settings.DATABASE_APPS_MAPPING
 class DatabaseAppsRouter():
 
     def db_for_read(self, model, **hints):
-        if model.meta.app_label in DATABASE_MAPPING:
-            return DATABASE_MAPPING[model.meta.app_label]
+        if model._meta.app_label in DATABASE_MAPPING:
+            return DATABASE_MAPPING[model._meta.app_label]
         return None
 
     def db_for_write(self, model, **hints):

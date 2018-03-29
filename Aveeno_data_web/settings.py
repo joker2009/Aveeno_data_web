@@ -23,8 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%3$11yccaix@8)jp&-ophzo*n!69nbv41%kmhl+82)r^q!!33!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'data_web',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -52,11 +53,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Aveeno_data_web.urls'
+import os.path
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, "templates"), ],
+        # 'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,22 +79,12 @@ WSGI_APPLICATION = 'Aveeno_data_web.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 # DATABASES = {
-#     'default': {
+# 'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aveeno_databag',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
-}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
@@ -100,27 +93,44 @@ DATABASES = {
 #         'PASSWORD': 'root',
 #         'HOST': '127.0.0.1',
 #         'PORT': '3306',
-#     },
-#     'data_source': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'aveeno_databag',
-#         'USER': 'root',
-#         'PASSWORD': 'root',
-#         'HOST': "127.0.0.1",
-#         'PORT': '3306'
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'aveeno_data_web_0327',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    },
+    'data_source': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'aveeno_databag',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': "127.0.0.1",
+        'PORT': '3306'
+    }
+}
 
-# DATABASE_ROUTERS = ['Aveeno_data_web.database_router.DatabaseAppsRouter']
-# DATABASE_APPS_MAPPING = {
-#     # example:
-#     # 'app_name':'database_name',
-#     'data_web': 'default',
-#     'users': 'data_source',
-# }
+DATABASE_ROUTERS = ['Aveeno_data_web.database_router.DatabaseAppsRouter']
+DATABASE_APPS_MAPPING = {
+    # example:
+    # 'app_name':'database_name',
+    'data_web': 'data_source',
+    'users': 'default',
+    # 'django.contrib.admin': 'default',
+    # 'django.contrib.auth': 'default',
+    # 'django.contrib.contenttypes': 'default',
+    # 'django.contrib.sessions': 'default',
+    # 'django.contrib.messages': 'default',
+    # 'django.contrib.staticfiles': 'default',
+
+}
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
-
+# AUTH_USER_MODEL = 'users.models'
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -141,8 +151,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -160,4 +172,4 @@ STATIC_URL = '/static/'
 #     os.path.join(BASE_DIR,  'templates'),
 # )
 
-LOGIN_URL = '/data_web/login'
+LOGIN_URL = '/users/login'
